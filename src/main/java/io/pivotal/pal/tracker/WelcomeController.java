@@ -22,8 +22,6 @@ public class WelcomeController {
 
     }
 
-
-
     public WelcomeController(@Value("${WELCOME_MESSAGE}") String message){
         this.message=message;
 
