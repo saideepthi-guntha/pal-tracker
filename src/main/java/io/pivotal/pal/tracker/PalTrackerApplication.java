@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.info.Info;
+import org.springframework.boot.actuate.info.InfoContributor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
@@ -33,5 +35,15 @@ public class PalTrackerApplication {
                 .modules(new JavaTimeModule())
                 .build();
 
+    }
+
+    @Bean
+    public InfoContributor infoContributor(){
+        return new InfoContributor() {
+            @Override
+            public void contribute(Info.Builder builder) {
+                builder.withDetail("Test", "field");
+            }
+        };
     }
 }
